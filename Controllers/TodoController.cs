@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EntityFramework.Controllers
 {
-    [Route("")]
-    //[Route("todo")]
+    //[Route("")]
+    [Route("todo")]
     public class TodoController : Controller
     {
         private readonly ITodoServices service;
