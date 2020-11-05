@@ -1,0 +1,33 @@
+﻿@using EntityFramework.Models.ViewModels
+@model AssigneeViewModel
+@{
+    var assignee = Model.Assignee;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Edit assignee</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="title">
+        <h1>Edit assignee</h1>
+    </div>
+    <div class="editor-container">
+        @using (Html.BeginForm("EditAssignee", "assignees", FormMethod.Post))
+        {
+            @Html.HiddenFor(t => t.Assignee.Id, "Id")
+            <div class="name-box">
+                @Html.LabelFor(t => t.Assignee.Name, "Name")
+                @Html.TextBoxFor(t => t.Assignee.Name)
+            </div>
+            <div class="email-box">
+                @Html.LabelFor(t => t.Assignee.Email, "Email")
+                @Html.TextBoxFor(t => t.Assignee.Email)
+            </div>
+            <input type="submit" value="Submit" />
+        }
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

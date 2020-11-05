@@ -1,0 +1,29 @@
+﻿@using EntityFramework.Models.ViewModels
+@model ListViewModel
+@{ 
+    var todos = Model.Todos;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Todo List</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="todos">
+        <div class="title">
+            <h1>Todos for today:</h1>
+        </div>
+        <div class="todo-list">
+            <ul id="todos">
+                @foreach (var todo in todos)
+                {
+                    <li>@todo.Title</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

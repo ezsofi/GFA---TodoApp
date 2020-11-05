@@ -1,0 +1,30 @@
+﻿@using EntityFramework.Models.ViewModels
+@model AssigneeViewModel
+@{
+    var assignee = Model.Assignee;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Add Assignee</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="add-new-todo">
+        <h1>Add new assignee</h1>
+    </div>
+    <div class="add">
+        @using (Html.BeginForm("AddAssignee", "", FormMethod.Post))
+        {
+            @Html.LabelFor(a => a.Assignee.Name, "Name")
+            @Html.TextBoxFor(a => a.Assignee.Name, null, new { @Placeholder = "Assignee name" })
+
+            @Html.LabelFor(a => a.Assignee.Email, "Email")
+            @Html.TextBoxFor(a => a.Assignee.Email, null, new { @Placeholder = "Assignee email" })
+            <input type="submit" value="Add Assignee" />
+        }
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿@using EntityFramework.Models.ViewModels
+@model AssigneesViewModel
+@{ 
+    var assignees = Model.Assignees;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Assignees</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="assignees">
+        <div class="title">
+            <h1>Assignees:</h1>
+        </div>
+        <div class="assignee-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Assignee name</th>
+                        <th>Assignee email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var assignee in assignees)
+                    {
+                        <tr>
+                            <td>@assignee.Name</td>
+                            <td>@assignee.Email</td>
+                            <td>
+                                @using (@Html.BeginForm("Delete", ""))
+                                {
+                                    <input type="hidden" name="Id" value=@assignee.Id />
+                                    <input type="submit" value="Delete" />
+                                }
+                            </td>
+                            <td>
+                                @using (@Html.BeginForm("EditAssignee", "editAssignee"))
+                                {
+                                    <input type="hidden" name="Id" value=@assignee.Id />
+                                    <a href="assignees/@assignee.Id/editAssignee">Edit</a>
+                                }
+                            </td>
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="add-assignee">
+            <a href="assignees/addassignee">Create new assignee</a>
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

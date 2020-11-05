@@ -1,0 +1,70 @@
+﻿@using EntityFramework.Models.ViewModels
+@model ListViewModel
+@{
+    var todos = Model.Todos;
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Todos Table</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="todos">
+        <div class="title">
+            <h1>TODOS FOR TODAY:</h1>
+        </div>
+        <div class="assignees">
+            <a href="assignees">Go to assignees</a>
+        </div>
+        <div class="add-new-todo">
+            <a href="todo/add">Add new todo</a>
+        </div>
+        <div class="search-todo">
+            <form action="todo/search" method="post" id="search">
+                <label for="todoSearch"> Search for todo:</label>
+                <input type="text" id="todoSearch" name="search" placeholder="todo keyword" />
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div class="todo-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ACTION</th>
+                        <th>DONE</th>
+                        <th>URGENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var todo in todos)
+                    {
+                        <tr>
+                            <td>@todo.Id</td>
+                            <td>@todo.Title</td>
+                            <td>@todo.IsUrgent</td>
+                            <td>@todo.IsDone</td>
+                            <td>
+                                @using (@Html.BeginForm("Delete", ""))
+                                {
+                                    <input type="hidden" name="Id" value=@todo.Id />
+                                    <input type="submit" value="Delete" />
+                                }
+                            </td>
+                            <td>
+                                @using (@Html.BeginForm("Edit", "edit"))
+                                {
+                                    <input type="hidden" name="Id" value=@todo.Id />
+                                    <a href="todo/@todo.Id/edit">Edit</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>
